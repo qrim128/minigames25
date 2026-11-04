@@ -5,6 +5,13 @@
 (function () {
   'use strict';
   var modal = null, TIME_KEY = /time|ms$|duration|delay|interval/i;
+  // Settings that use a dropdown list instead of free typing: { gameId: { settingKey: [allowed values] } }
+  var OPTIONS = {
+    cipherdecode: {
+      backwards: ['random', 'true', 'false'],
+      cipher: ['mixed', 'shift', 'atbash', 'number']
+    }
+  };
 
   function same(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
   function isPrim(v) { return typeof v === 'string' || typeof v === 'number'; }
@@ -20,12 +27,20 @@
   function seconds(ms) { var s = ms / 1000; return (s % 1 ? s.toFixed(1) : String(s)) + ' s'; }
 
   // One editable row per setting. get() returns {value} or {error}.
-  function field(key, def, cur) {
+  function field(key, def, cur, gid) {
     var kind = kindOf(def), row = mk('div', 'row'), input, hint = mk('span', 'unit');
+    var opts = kind === 'string' && (OPTIONS[gid] || {})[key];
     var lab = mk('label', 'k', key);
     if (kind === 'bool') { input = mk('input'); input.type = 'checkbox'; input.checked = !!cur; }
     else if (kind === 'json') { input = mk('textarea'); input.rows = 3; input.value = JSON.stringify(cur, null, 2); }
     else if (kind === 'number') { input = mk('input'); input.type = 'number'; input.step = 'any'; input.value = String(cur); }
+    else if (opts) {
+      input = mk('select');
+      (opts.indexOf(String(cur)) < 0 ? opts.concat([String(cur)]) : opts).forEach(function (o) {
+        var op = mk('option', '', o); op.value = o; input.appendChild(op);
+      });
+      input.value = String(cur);
+    }
     else { input = mk('input'); input.type = 'text'; input.value = show(cur); }
     input.id = 'ws-' + key; lab.htmlFor = input.id;
     var reset = mk('button', 'undo', '\u21ba'); reset.type = 'button'; reset.title = 'Back to default (' + show(def) + ')';
@@ -81,7 +96,7 @@
     try { if (window.HackingWeb) await window.HackingWeb.reloadSettings(); } catch (e) {}
     var def = g.defaults || {}, keys = Object.keys(def);
     var ov = window.HackingWeb ? window.HackingWeb.overrides(g) : {};
-    var fields = keys.map(function (k) { return field(k, def[k], k in ov ? ov[k] : def[k]); });
+    var fields = keys.map(function (k) { return field(k, def[k], k in ov ? ov[k] : def[k], g.id); });
 
     modal = mk('div'); modal.id = 'web-set-modal';
     var box = mk('div', 'box'); modal.appendChild(box);
