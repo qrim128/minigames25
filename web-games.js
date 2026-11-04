@@ -107,7 +107,7 @@ window.WEB_GAMES = {
     { show: true, id: "colorsort", title: "Color Sort", hint: "Sort the tokens by color",
       defaults: {"colors": 4, "extraTubes": 2, "rounds": 2, "scramble": 16, "maxMoves": 24, "timeLimit": 60000, "undoPenalty": 5000, "resetPenalty": 10000, "symbols": true, "colorblind": false} },
     { show: true, id: "cipherdecode", title: "Cipher Decode", hint: "Decode the word with the key",
-      defaults: {"rounds": 3, "wordLength": 5, "cipher": "mixed", "layers": 1, "maxMistakes": 3, "timeLimit": 60000} },
+      defaults: {"rounds": 3, "wordLength": 5, "cipher": "mixed", "backwards": "random", "layers": 1, "maxMistakes": 3, "timeLimit": 60000} },
     { show: true, id: "sumgrid", title: "Sum Grid", hint: "Make every row and column add up",
       defaults: {"gridSize": 4, "blanks": 8, "maxMistakes": 3, "timeLimit": 90000} },
     { show: true, id: "compactorload", title: "Compactor Load", hint: "Fit every bag into the truck bed",
