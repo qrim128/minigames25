@@ -263,6 +263,21 @@ body:not(.playing) #root { visibility: hidden; }
 #web-set-modal textarea { resize: vertical; font-size: 12px; }
 #web-set-modal input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--accent, #ffb000); }
 #web-set-modal input:focus, #web-set-modal select:focus, #web-set-modal textarea:focus { outline: none; border-color: var(--accent, #ffb000); box-shadow: 0 0 0 3px var(--accent-faint, #ffb0001a); }
+/* Dropdown list for fixed-choice settings: same look as the text fields, with a custom arrow */
+#web-set-modal select {
+  -webkit-appearance: none; appearance: none; cursor: pointer; color-scheme: dark;
+  padding-right: 32px; text-overflow: ellipsis;
+  background-color: var(--bg-raised, #22242a);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23a1a1aa' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 11px center; background-size: 12px 8px;
+  transition: border-color .15s, box-shadow .15s;
+}
+#web-set-modal select:hover { border-color: var(--accent-line, #ffb00073); }
+#web-set-modal select:focus {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1.5l5 5 5-5' fill='none' stroke='%23ffb000' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+#web-set-modal select option { background: var(--bg-raised, #22242a); color: var(--text, #f4f4f5); font-family: inherit; }
+#web-set-modal .row.chg select { border-color: var(--accent-line, #ffb00073); }
 #web-set-modal .undo { visibility: hidden; width: 28px; height: 28px; flex: none; padding: 0; cursor: pointer; font-size: 15px; line-height: 1; color: var(--muted, #a1a1aa); background: transparent; border: 1px solid var(--border, #383b42); border-radius: .375rem; }
 #web-set-modal .row.chg .undo { visibility: visible; }
 #web-set-modal .undo:hover { color: var(--accent, #ffb000); border-color: var(--accent, #ffb000); }
