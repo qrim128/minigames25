@@ -10,7 +10,10 @@
     cipherdecode: {
       backwards: ['random', 'true', 'false'],
       cipher: ['mixed', 'shift', 'atbash', 'number']
-    }
+    },
+    rhythm: { difficulty: ['easy', 'normal', 'hard'] },
+    symbolsearch: { symbolType: ['symbols', 'letters', 'numbers', 'dots', 'emojis'] },
+    spot: { charSet: ['numeric', 'alphabet', 'alphanumeric', 'greek', 'runes', 'braille'] }
   };
 
   function same(a, b) { return JSON.stringify(a) === JSON.stringify(b); }
