@@ -14127,7 +14127,7 @@ function ak(e) {
       , n = t(e);
     return n.length >= 8 ? n : t(5)
 }
-function Of(e, t, n, r="") {
+function Of(e, t, n, r="", bw=!1) {
     const s = ak(e);
     for (let i = 0; i < 100; i++) {
         const c = s[K(0, s.length - 1)];
@@ -14136,7 +14136,7 @@ function Of(e, t, n, r="") {
         const u = {
             kind: t,
             shift: K(1, 25),
-            reversed: n >= 2
+            reversed: n >= 2 || !!bw
         }
           , d = Pf(c, u);
         if (!(t !== "number" && d.join("") === c))
@@ -14150,7 +14150,7 @@ function Of(e, t, n, r="") {
       , a = {
         kind: t,
         shift: 3,
-        reversed: n >= 2
+        reversed: n >= 2 || !!bw
     };
     return {
         word: o,
@@ -14177,9 +14177,11 @@ function uk({settings: e, finish: t}) {
       , s = Y(Math.round(e.layers), 1, 2)
       , o = Math.max(1, Math.round(e.maxMistakes))
       , a = String(e.cipher || "mixed")
+      , bwSet = e.backwards === void 0 ? !1 : e.backwards
+      , bwRoll = () => bwSet === "random" ? K(0, 1) === 1 : bwSet === !0 || bwSet === "true"
       , i = E => $f.includes(a) ? a : $f[(E + K(0, 2)) % 3]
       , [c,u] = h.useState(0)
-      , [d,f] = h.useState( () => Of(n, i(0), s))
+      , [d,f] = h.useState( () => Of(n, i(0), s, "", bwRoll()))
       , [m,y] = h.useState("")
       , [g,p] = h.useState(0)
       , [k,v] = h.useState(!1)
@@ -14217,7 +14219,7 @@ function uk({settings: e, finish: t}) {
                 return N.current = !0,
                 void S( () => t(!0), Lf);
             S( () => {
-                f(Of(n, i(c + 1), s, d.word)),
+                f(Of(n, i(c + 1), s, d.word, bwRoll())),
                 y(""),
                 w({
                     text: "",
@@ -21649,6 +21651,7 @@ const lb = {
             rounds: 3,
             wordLength: 5,
             cipher: "mixed",
+            backwards: "random",
             layers: 1,
             maxMistakes: 3,
             timeLimit: 6e4
