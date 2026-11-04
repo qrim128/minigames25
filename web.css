@@ -257,12 +257,12 @@ body:not(.playing) #root { visibility: hidden; }
 #web-set-modal .row .def { grid-column: 2; font-size: 12px; color: var(--muted, #a1a1aa); word-break: break-word; }
 #web-set-modal .row.bad .def { color: var(--danger, #ff6b6b); }
 #web-set-modal .row .unit { font-size: 12px; color: var(--muted, #a1a1aa); white-space: nowrap; }
-#web-set-modal input[type=text], #web-set-modal input[type=number], #web-set-modal textarea {
+#web-set-modal input[type=text], #web-set-modal input[type=number], #web-set-modal select, #web-set-modal textarea {
   flex: 1; min-width: 0; background: var(--bg-raised, #22242a); color: inherit; border: 1px solid var(--border, #383b42); border-radius: .375rem; padding: 7px 10px; font: 14px ui-monospace, Consolas, monospace;
 }
 #web-set-modal textarea { resize: vertical; font-size: 12px; }
 #web-set-modal input[type=checkbox] { width: 18px; height: 18px; accent-color: var(--accent, #ffb000); }
-#web-set-modal input:focus, #web-set-modal textarea:focus { outline: none; border-color: var(--accent, #ffb000); box-shadow: 0 0 0 3px var(--accent-faint, #ffb0001a); }
+#web-set-modal input:focus, #web-set-modal select:focus, #web-set-modal textarea:focus { outline: none; border-color: var(--accent, #ffb000); box-shadow: 0 0 0 3px var(--accent-faint, #ffb0001a); }
 #web-set-modal .undo { visibility: hidden; width: 28px; height: 28px; flex: none; padding: 0; cursor: pointer; font-size: 15px; line-height: 1; color: var(--muted, #a1a1aa); background: transparent; border: 1px solid var(--border, #383b42); border-radius: .375rem; }
 #web-set-modal .row.chg .undo { visibility: visible; }
 #web-set-modal .undo:hover { color: var(--accent, #ffb000); border-color: var(--accent, #ffb000); }
