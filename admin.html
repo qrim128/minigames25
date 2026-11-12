@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hacking - Admin</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="web.css">
+    <!-- Web shim: must run BEFORE script.js so the bundle sees a NUI-like environment. -->
+    <script>window.WEB_ADMIN = true;</script>
+    <script src="web-lock.js"></script>
+    <script src="web-games.js"></script>
+    <script src="web.js"></script>
+    <script src="web-coop.js"></script>
+    <script src="web-presence.js"></script>
+    <script src="web-admin-settings.js"></script>
+    <script defer src="script.js"></script>
+  </head>
+  <body>
+    <div id="main-wrapper" inert>
+      <div id="root"></div>
+      <div id="web-menu"></div>
+    </div>
+    <div id="web-toast" hidden></div>
+    <div id="lock-screen">
+      <div class="lock-box">
+        <div class="lock-title">ADMIN</div>
+        <div class="lock-sub">Enter the admin password (the one in web-config.sql) to view and play every minigame.</div>
+        <form id="admin-form" autocomplete="off">
+          <input id="admin-pw" type="password" placeholder="Admin password" autocomplete="off">
+          <button id="admin-go" type="submit">Unlock</button>
+        </form>
+        <div id="lock-status">Connecting...</div>
+      </div>
+    </div>
+  </body>
+</html>
